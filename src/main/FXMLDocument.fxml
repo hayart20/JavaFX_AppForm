@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.paint.*?>
+<?import model.* ?>
+<?import javafx.scene.input.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="3000.0" prefWidth="1024" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLDocumentController">
+
+    <children>
+   
+      <ScrollPane pannable="false" prefHeight="700.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <content>
+          <VBox prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              
+              <children>
+                 <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                        <items>
+                            <MenuItem  disable="true" text="New">
+                               
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Open...">
+                                <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        </accelerator>
+                            </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save">
+                            <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Save As..." />
+                        <SeparatorMenuItem />
+                         <MenuItem mnemonicParsing="false" onAction="#handlePDF" text="PDF">
+                                <accelerator>
+                       <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                </accelerator>
+                            </MenuItem>
+                        <SeparatorMenuItem />
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                        </items>
+                    </Menu>
+                  <Menu text="Language">
+                     <items>
+                        <MenuItem onAction="#handleRussian" text="%russian" />
+                        <MenuItem onAction="#handleChinese" text="%chinese" />
+                     </items>
+                  </Menu>
+                  <Menu text="Help">
+                     <items>
+                        <MenuItem disable="true" text="registration" />
+                        <MenuItem text="Online Manual" visible="false" />
+                        <SeparatorMenuItem />
+                        <MenuItem text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+               <BorderPane prefHeight="3000.0" prefWidth="1000" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <top>
+                     
+                         <ImageView fx:id="boxImage">
+                            <image>
+                                <Image url="http://developer.am/webservice/banner728x90.gif" />
+                           </image>
+                         </ImageView>
+                     
+                  </top>
+                     <bottom>
+                     <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="3000.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+                        <children>
+                            <Label layoutX="3.0" layoutY="6.0" prefHeight="26.0" prefWidth="362.0" styleClass="welcome-text" text="%part1" />
+                           <Label layoutX="3.0" layoutY="30.0" prefHeight="88.0" prefWidth="291.0" style="-fx-wrap-text: true;" text="%nameDesc" />
+                           <Label layoutX="336.0" layoutY="34.0" text="%lastname" />
+                           <Label layoutX="336.0" layoutY="64.0" text="%fathername" />
+                           <Label layoutX="336.0" layoutY="94.0" text="%firstname" />
+                           <TextField fx:id="field1" layoutX="412.0" layoutY="34.0" prefHeight="25.0" prefWidth="423.0" />
+                           <TextField fx:id="field2" layoutX="412.0" layoutY="64.0" prefHeight="25.0" prefWidth="423.0" />
+                           <TextField fx:id="field3" layoutX="412.0" layoutY="94.0" prefHeight="25.0" prefWidth="423.0" />
+                           
+                           <Label layoutX="3.0" layoutY="126.0" prefHeight="17.0" prefWidth="170.0" text="%chinaseName" />
+                           <TextField fx:id="field4" layoutX="210.0" layoutY="124.0" prefHeight="25.0" prefWidth="280.0" />
+                           
+                           <Label layoutX="498.0" layoutY="126.0" prefHeight="17.0" prefWidth="196.0" text="%othername" />
+                           <TextField fx:id="field5" layoutX="718.0" layoutY="124.0" prefHeight="25.0" prefWidth="280.0" />
+                              
+                           <Label layoutX="3.0" layoutY="154.0" prefHeight="17.0" prefWidth="100.0" text="%sex" />   
+                            <CheckBox fx:id="field6" layoutX="210.0" layoutY="154.0" mnemonicParsing="false" text="%man" />
+                            <CheckBox fx:id="field7" layoutX="320.0" layoutY="154.0" mnemonicParsing="false" text="%women" />
+                              
+                              <Label layoutX="498.0" layoutY="154.0" prefHeight="17.0" prefWidth="210.0" text="%databirth" />
+                              <ComboBox fx:id="field8" layoutX="718.0" layoutY="152.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field9" layoutX="808.0" layoutY="152.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field10" layoutX="898.0" layoutY="152.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                                
+                              <Label layoutX="3.0" layoutY="179.0" prefHeight="17.0" prefWidth="210.0" text="%citizen" />
+                              <Label layoutX="498.0" layoutY="179.0" prefHeight="17.0" prefWidth="210.0" text="%old_citizen_of" />
+                              
+                              <TextField fx:id="field11" layoutX="210.0" layoutY="179.0" prefHeight="25.0" prefWidth="280.0" />
+                              <TextField fx:id="field12" layoutX="718.0" layoutY="179.0" prefHeight="25.0" prefWidth="280.0" />
+                              
+                              
+                              <Label layoutX="3.0" layoutY="214.0" prefHeight="17.0" prefWidth="278.0" text="%birthplace" />
+                              <TextField fx:id="field13" layoutX="309.0" layoutY="210.0" prefHeight="25.0" prefWidth="500.0" />
+                              <TextField fx:id="field14" layoutX="309.0" layoutY="240.0" prefHeight="25.0" prefWidth="500.0" />
+                             
+                              <Label layoutX="3.0" layoutY="244.0" prefHeight="17.0" prefWidth="299.0" text="%passportData" />
+                              
+                              
+                              <Label layoutX="3.0" layoutY="276.0" prefHeight="17.0" prefWidth="170.0" text="%passportType" />
+                              <TextField fx:id="field20" layoutX="176.0" layoutY="303.0" prefHeight="25.0" prefWidth="307.0" />
+                              <Label layoutX="3.0" layoutY="307.0" prefHeight="17.0" prefWidth="101.0" text="%passportNumber" />
+                              <TextField fx:id="field24" layoutX="177.0" layoutY="335.0" prefHeight="25.0" prefWidth="306.0" />
+                              <Label layoutX="3.0" layoutY="335.0" prefHeight="17.0" prefWidth="168.0" text="%passportGivenPlace" />
+
+
+                              <CheckBox fx:id="field15" layoutX="176.0" layoutY="276.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="124.0" text="%passType1" />
+                              <CheckBox fx:id="field16" layoutX="305.0" layoutY="276.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="103.0" text="%passType2" />
+                              <CheckBox fx:id="field17" layoutX="413.0" layoutY="276.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="135.0" text="%passType3" />
+                              <CheckBox fx:id="field18" layoutX="548.0" layoutY="276.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="124.0" text="%passType4" />
+                              
+                              <TextField fx:id="field19" layoutX="667.0" layoutY="271.0" prefHeight="25.0" prefWidth="327.0" />
+                              <Label layoutX="498.0" layoutY="303.0" prefHeight="17.0" prefWidth="205.0" text="%passportGivenDate" />
+                              <ComboBox fx:id="field21" layoutX="718.0" layoutY="303.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field22" layoutX="808.0" layoutY="303.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field23" layoutX="898.0" layoutY="303.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+
+                              <Label layoutX="498.0" layoutY="335.0" prefHeight="17.0" prefWidth="218.0" text="%passportValidDate" />
+                              <ComboBox fx:id="field25" layoutX="718.0" layoutY="335.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field26" layoutX="808.0" layoutY="335.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field27" layoutX="898.0" layoutY="335.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+ 
+                              <Label layoutX="3.0" layoutY="367.0" prefHeight="227.0" prefWidth="167.0" style="-fx-wrap-text: true;" text="%passportProfession" />
+                              
+                              <CheckBox fx:id="field28" layoutX="177.0" layoutY="366.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession1" />
+                              <CheckBox fx:id="field37" layoutX="500.0" layoutY="366.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession10" />
+                              
+                              <CheckBox fx:id="field29" layoutX="177.0" layoutY="391.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession2" />
+                              <CheckBox fx:id="field39" layoutX="500.0" layoutY="413.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession11" />
+                                <Label layoutX="533.0" layoutY="387.0" prefHeight="17.0" prefWidth="135.0" text="%professionPosition" />
+                              
+                              <CheckBox fx:id="field30" layoutX="177.0" layoutY="416.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession3" />
+                              <CheckBox fx:id="field31" layoutX="177.0" layoutY="441.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession4" />
+                              
+                              <CheckBox fx:id="field32" layoutX="177.0" layoutY="466.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession5" />
+                              <CheckBox fx:id="field33" layoutX="177.0" layoutY="491.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession6" />
+                              <CheckBox fx:id="field34" layoutX="177.0" layoutY="516.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession7" />
+                              <CheckBox fx:id="field35" layoutX="177.0" layoutY="541.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession8" />
+                              <CheckBox fx:id="field36" layoutX="177.0" layoutY="566.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="323.0" text="%profession9" />
+                              <TextField fx:id="field38" layoutX="669.0" layoutY="384.0" prefHeight="25.0" prefWidth="319.0" />
+                              
+                              
+                              <Label layoutX="531.0" layoutY="438.0" prefHeight="17.0" prefWidth="134.0" text="%professionPosition" />
+                              <TextField fx:id="field40" layoutX="669.0" layoutY="435.0" prefHeight="25.0" prefWidth="318.0" />
+                              <TextField fx:id="field42" layoutX="669.0" layoutY="488.0" prefHeight="25.0" prefWidth="317.0" />
+                              <Label layoutX="532.0" layoutY="489.0" prefHeight="17.0" prefWidth="130.0" text="%professionPosition" />
+                              <CheckBox fx:id="field41" layoutX="500.0" layoutY="467.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession12" />
+                              <CheckBox fx:id="field43" layoutX="500.0" layoutY="516.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession13" />
+                              <CheckBox fx:id="field44" layoutX="500.0" layoutY="541.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession14" />
+                              <CheckBox fx:id="field45" layoutX="500.0" layoutY="566.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="326.0" text="%profession15" />
+                              
+                              
+                              
+                              <Label layoutX="3.0" layoutY="675.0" prefHeight="38.0" prefWidth="154.0" style="-fx-wrap-text: true;" text="%workPlace" />
+                              <Label layoutX="200.0" layoutY="673.0" prefHeight="17.0" prefWidth="88.0" text="%workPlace1" />
+                              <TextField fx:id="field50" layoutX="293.0" layoutY="670.0" prefHeight="25.0" prefWidth="282.0" />
+                              <TextField fx:id="field51" layoutX="736.0" layoutY="670.0" prefHeight="25.0" prefWidth="263.0" />
+                              <Label layoutX="579.0" layoutY="673.0" prefHeight="17.0" prefWidth="116.0" text="%workPlace2" />
+                              
+                              <Label layoutX="3.0" layoutY="617.0" prefHeight="30.0" prefWidth="167.0" style="-fx-wrap-text: true;" text="%education" />
+                              <CheckBox fx:id="field46" layoutX="177.0" layoutY="619.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="179.0" text="%education1" />
+                              <CheckBox fx:id="field47" layoutX="500.0" layoutY="619.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="128.0" text="%education2" />
+                              <CheckBox fx:id="field48" layoutX="177.0" layoutY="639.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="116.0" text="%education3" />
+                              <TextField fx:id="field49" layoutX="294.0" layoutY="639.0" prefHeight="25.0" prefWidth="432.0" />
+                              <Label layoutX="580.0" layoutY="700.0" prefHeight="17.0" prefWidth="123.0" text="%workPlace4" />
+                              <TextField fx:id="field53" layoutX="737.0" layoutY="700.0" prefHeight="25.0" prefWidth="263.0" />
+                              <TextField fx:id="field52" layoutX="292.0" layoutY="700.0" prefHeight="25.0" prefWidth="285.0" />
+                              <Label layoutX="200.0" layoutY="700.0" prefHeight="17.0" prefWidth="89.0" text="%workPlace3" />
+                              
+                              <Label layoutX="3.0" layoutY="767.0" prefHeight="17.0" prefWidth="195.0" text="%phoneNum" />
+                              <TextField fx:id="field56" layoutX="201.0" layoutY="762.0" prefHeight="25.0" prefWidth="333.0" />
+                              <TextField fx:id="field57" layoutX="737.0" layoutY="762.0" prefHeight="25.0" prefWidth="263.0" />
+                              <Label layoutX="579.0" layoutY="763.0" prefHeight="17.0" prefWidth="156.0" text="%email" />
+                              <Label layoutX="578.0" layoutY="734.0" prefHeight="17.0" prefWidth="155.0" text="%zipCode" />
+                              <TextField fx:id="field55" layoutX="736.0" layoutY="732.0" prefHeight="25.0" prefWidth="263.0" />
+                              <TextField fx:id="field54" layoutX="201.0" layoutY="731.0" prefHeight="25.0" prefWidth="333.0" />
+                              
+                              <Label layoutX="3.0" layoutY="735.0" prefHeight="17.0" prefWidth="170.0" text="%homeAddr" />
+                              <Label layoutX="3.0" layoutY="842.0" prefHeight="137.0" prefWidth="120.0" style="-fx-wrap-text: true;" text="%familyStaff" />
+                              <Label layoutX="210.0" layoutY="823.0" prefHeight="30.0" prefWidth="170.0" style="-fx-wrap-text: true;" text="%familyStaff1" />
+                              <Label layoutX="406.0" layoutY="823.0" prefHeight="30.0" prefWidth="170.0" style="-fx-wrap-text: true;" text="%familyStaff2" />
+                              <Label layoutX="592.0" layoutY="823.0" prefHeight="30.0" prefWidth="170.0" style="-fx-wrap-text: true;" text="%familyStaff3" />
+                              <Label layoutX="814.0" layoutY="823.0" prefHeight="30.0" prefWidth="170.0" style="-fx-wrap-text: true;" text="%familyStaff4" />
+                              <TextField fx:id="field58" layoutX="125.0" layoutY="850.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field59" layoutX="343.0" layoutY="850.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field60" layoutX="563.0" layoutY="850.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field61" layoutX="786.0" layoutY="850.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field65" layoutX="785.0" layoutY="881.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field64" layoutX="563.0" layoutY="881.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field63" layoutX="342.0" layoutY="881.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field62" layoutX="124.0" layoutY="881.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field70" layoutX="123.0" layoutY="944.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field71" layoutX="341.0" layoutY="944.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field72" layoutX="563.0" layoutY="944.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field73" layoutX="784.0" layoutY="944.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field69" layoutX="785.0" layoutY="912.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field68" layoutX="563.0" layoutY="912.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field67" layoutX="342.0" layoutY="912.0" prefHeight="25.0" prefWidth="211.0" />
+                              <TextField fx:id="field66" layoutX="124.0" layoutY="912.0" prefHeight="25.0" prefWidth="211.0" />
+                              <Label layoutX="123.0" layoutY="1014.0" prefHeight="17.0" prefWidth="154.0" text="%contactPerson3" />
+                              <TextField fx:id="field76" layoutX="276.0" layoutY="1010.0" prefHeight="25.0" prefWidth="276.0" />
+                              <Label layoutX="562.0" layoutY="981.0" prefHeight="17.0" prefWidth="181.0" text="%contactPerson2" />
+                              <TextField fx:id="field75" layoutX="746.0" layoutY="979.0" prefHeight="25.0" prefWidth="247.0" />
+                              <TextField fx:id="field74" layoutX="275.0" layoutY="978.0" prefHeight="25.0" prefWidth="278.0" />
+                              <Label layoutX="122.0" layoutY="982.0" prefHeight="17.0" prefWidth="109.0" text="%contactPerson1" />
+                              <Label layoutX="3.0" layoutY="974.0" prefHeight="57.0" prefWidth="118.0" style="-fx-wrap-text: true;" text="%contactPerson" />
+                              <TextField fx:id="field77" layoutX="563.0" layoutY="1034.0" prefHeight="25.0" prefWidth="431.0" />
+                              <Label layoutX="3.0" layoutY="1034.0" prefHeight="28.0" prefWidth="549.0" text="%visitedPlace" />
+                              <Label layoutX="3.0" layoutY="1080.0" prefHeight="26.0" prefWidth="500.0" styleClass="welcome-text" text="%part2" />
+                              <CheckBox fx:id="field78" layoutX="124.0" layoutY="1114.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose1" />
+                              <Label layoutX="3.0" layoutY="1113.0" prefHeight="379.0" prefWidth="115.0" style="-fx-wrap-text: true;" text="%travelPurpose" />
+                              <CheckBox fx:id="field80" layoutX="124.0" layoutY="1139.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose2" />
+                              <CheckBox fx:id="field81" layoutX="124.0" layoutY="1164.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose3" />
+                              <CheckBox fx:id="field83" layoutX="124.0" layoutY="1189.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose4" />
+                              <CheckBox fx:id="field85" layoutX="124.0" layoutY="1214.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose5" />
+                              <CheckBox fx:id="field87" layoutX="124.0" layoutY="1239.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose6" />
+                              <CheckBox fx:id="field88" layoutX="124.0" layoutY="1264.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose7" />
+                              <CheckBox fx:id="field86" layoutX="563.0" layoutY="1228.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose11" />
+                              <CheckBox fx:id="field84" layoutX="563.0" layoutY="1199.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose10" />
+                              <CheckBox fx:id="field82" layoutX="563.0" layoutY="1173.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="283.0" text="%travelPurpose9" />
+                              <CheckBox fx:id="field79" layoutX="563.0" layoutY="1097.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="430.0" text="%travelPurpose8" />
+                              <CheckBox fx:id="field89" layoutX="124.0" layoutY="1295.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose12" />
+                              <CheckBox fx:id="field90" contentDisplay="TOP" layoutX="563.0" layoutY="1281.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose13" />
+                              <CheckBox fx:id="field92" contentDisplay="TOP" layoutX="563.0" layoutY="1350.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose15" />
+                              <CheckBox fx:id="field91" layoutX="124.0" layoutY="1353.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose14" />
+                              <CheckBox fx:id="field93" layoutX="124.0" layoutY="1415.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose16" />
+                              <CheckBox fx:id="field94" layoutX="563.0" layoutY="1411.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose17" />
+                              <CheckBox fx:id="field97" layoutX="124.0" layoutY="1477.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose20" />
+                              <TextField fx:id="field98" layoutX="563.0" layoutY="1478.0" prefHeight="25.0" prefWidth="426.0" />
+                              <CheckBox fx:id="field96" layoutX="563.0" layoutY="1443.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose19" />
+                              <CheckBox fx:id="field95" layoutX="124.0" layoutY="1446.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%travelPurpose18" />
+                              <Label layoutX="3.0" layoutY="1525.0" prefHeight="111.0" prefWidth="115.0" style="-fx-wrap-text: true;" text="%planingTravel" />
+                              <CheckBox fx:id="field99" layoutX="124.0" layoutY="1519.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%planingTravel1" />
+                              <CheckBox fx:id="field100" layoutX="124.0" layoutY="1544.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%planingTravel2" />
+                              <CheckBox fx:id="field101" layoutX="124.0" layoutY="1569.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%planingTravel3" />
+                              <CheckBox fx:id="field102" layoutX="124.0" layoutY="1594.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%planingTravel4" />
+                              <TextField fx:id="field104" layoutX="563.0" layoutY="1619.0" prefHeight="25.0" prefWidth="426.0" />
+                              <CheckBox fx:id="field103" layoutX="124.0" layoutY="1619.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="430.0" style="-fx-wrap-text: true;" text="%planingTravel5" />
+                              <Label layoutX="3.0" layoutY="1654.0" prefHeight="29.0" prefWidth="274.0" style="-fx-wrap-text: true;" text="%fastService" />
+                              <CheckBox fx:id="field144" layoutX="873.0" layoutY="1650.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" style="-fx-wrap-text: true;" text="%yes" />
+                              <CheckBox fx:id="field105" layoutX="941.0" layoutY="1650.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="48.0" style="-fx-wrap-text: true;" text="%no" />
+                              <Label layoutX="279.0" layoutY="1654.0" prefHeight="29.0" prefWidth="577.0" style="-fx-wrap-text: true;" styleClass="labelSmall" text="%fastService2" />
+                              <Label graphicTextGap="3.0" layoutX="3.0" layoutY="1700.0" prefHeight="29.0" prefWidth="552.0" style="-fx-wrap-text: true;" text="%dataSuggestion" />
+                              <TextField fx:id="field106" layoutX="563.0" layoutY="1730.0" prefHeight="25.0" prefWidth="309.0" />
+                              <Label graphicTextGap="3.0" layoutX="3.0" layoutY="1730.0" prefHeight="29.0" prefWidth="556.0" style="-fx-wrap-text: true;" text="%dataViseted" />
+                              <TextField fx:id="field118" layoutX="563.0" layoutY="1854.0" prefHeight="25.0" prefWidth="426.0" />
+                              <TextField fx:id="field122" layoutX="563.0" layoutY="1886.0" prefHeight="25.0" prefWidth="426.0" />
+                              <TextField fx:id="field114" layoutX="563.0" layoutY="1823.0" prefHeight="25.0" prefWidth="426.0" />
+                              <TextField fx:id="field110" layoutX="563.0" layoutY="1791.0" prefHeight="25.0" prefWidth="426.0" />
+                              <Label layoutX="678.0" layoutY="1765.0" prefHeight="30.0" prefWidth="170.0" style="-fx-wrap-text: true;" text="%addressMore" />
+                              <Label layoutX="296.0" layoutY="1765.0" prefHeight="30.0" prefWidth="170.0" style="-fx-wrap-text: true;" text="%date" />
+                              <Label layoutX="3.0" layoutY="1791.0" prefHeight="147.0" prefWidth="176.0" style="-fx-wrap-text: true;" text="%marshrut" />
+                              <ComboBox fx:id="field113" layoutX="364.0" layoutY="1824.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <ComboBox fx:id="field112" layoutX="274.0" layoutY="1824.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field111" layoutX="184.0" layoutY="1824.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field109" layoutX="364.0" layoutY="1792.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <ComboBox fx:id="field108" layoutX="274.0" layoutY="1792.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field107" layoutX="184.0" layoutY="1792.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field115" layoutX="184.0" layoutY="1852.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field116" layoutX="274.0" layoutY="1852.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field117" layoutX="364.0" layoutY="1852.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <ComboBox fx:id="field119" layoutX="184.0" layoutY="1884.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field120" layoutX="274.0" layoutY="1884.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field121" layoutX="364.0" layoutY="1884.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <ComboBox fx:id="field125" layoutX="363.0" layoutY="1914.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <ComboBox fx:id="field124" layoutX="273.0" layoutY="1914.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field123" layoutX="183.0" layoutY="1914.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <TextField fx:id="field126" layoutX="564.0" layoutY="1916.0" prefHeight="25.0" prefWidth="426.0" />
+                              <Label graphicTextGap="3.0" layoutX="3.0" layoutY="1952.0" prefHeight="29.0" prefWidth="554.0" style="-fx-wrap-text: true;" text="%howpay" />
+                              <TextField fx:id="field127" layoutX="563.0" layoutY="1952.0" prefHeight="25.0" prefWidth="426.0" />
+                              <Label layoutX="3.0" layoutY="1986.0" prefHeight="111.0" prefWidth="164.0" style="-fx-wrap-text: true;" text="%infoAboutVisit" />
+                              <TextField fx:id="field128" layoutX="445.0" layoutY="1986.0" prefHeight="25.0" prefWidth="543.0" />
+                              <TextField fx:id="field129" layoutX="446.0" layoutY="2016.0" prefHeight="25.0" prefWidth="543.0" />
+                              <TextField fx:id="field130" layoutX="446.0" layoutY="2046.0" prefHeight="25.0" prefWidth="543.0" />
+                              <TextField fx:id="field131" layoutX="446.0" layoutY="2077.0" prefHeight="25.0" prefWidth="543.0" />
+                              <Label layoutX="183.0" layoutY="1985.0" prefHeight="30.0" prefWidth="257.0" style="-fx-wrap-text: true;" text="%nazvanie" />
+                              <Label layoutX="183.0" layoutY="2017.0" prefHeight="30.0" prefWidth="257.0" style="-fx-wrap-text: true;" text="%address" />
+                              <Label layoutX="183.0" layoutY="2048.0" prefHeight="30.0" prefWidth="257.0" style="-fx-wrap-text: true;" text="%tel" />
+                              <Label layoutX="183.0" layoutY="2078.0" prefHeight="30.0" prefWidth="257.0" style="-fx-wrap-text: true;" text="%relation" />
+                              <Label graphicTextGap="3.0" layoutX="3.0" layoutY="2160.0" prefHeight="50.0" prefWidth="555.0" style="-fx-wrap-text: true;" text="%otherViseted" />
+                              <TextField fx:id="field133" layoutX="563.0" layoutY="2160.0" prefHeight="25.0" prefWidth="426.0" />
+                              <TextField fx:id="field132" layoutX="563.0" layoutY="2110.0" prefHeight="25.0" prefWidth="426.0" />
+                              <Label graphicTextGap="3.0" layoutX="3.0" layoutY="2110.0" prefHeight="50.0" prefWidth="555.0" style="-fx-wrap-text: true;" text="%oldVisa" />
+                              <Label layoutX="3.0" layoutY="2220.0" prefHeight="26.0" prefWidth="500.0" styleClass="welcome-text" text="%part3" />
+                              <CheckBox fx:id="field135" layoutX="942.0" layoutY="2247.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="48.0" style="-fx-wrap-text: true;" text="%no" />
+                              <CheckBox fx:id="field134" layoutX="874.0" layoutY="2247.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" style="-fx-wrap-text: true;" text="%yes" />
+                              <Label layoutX="3.0" layoutY="2251.0" prefHeight="29.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%wrongVisit" />
+                              <Label layoutX="3.0" layoutY="2276.0" prefHeight="29.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%rejectedVisit" />
+                              <CheckBox fx:id="field136" layoutX="874.0" layoutY="2272.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" style="-fx-wrap-text: true;" text="%yes" />
+                              <CheckBox fx:id="field137" layoutX="942.0" layoutY="2272.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="48.0" style="-fx-wrap-text: true;" text="%no" />
+                              <CheckBox fx:id="field139" layoutX="942.0" layoutY="2296.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="48.0" style="-fx-wrap-text: true;" text="%no" />
+                              <CheckBox fx:id="field138" layoutX="874.0" layoutY="2296.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" style="-fx-wrap-text: true;" text="%yes" />
+                              <Label layoutX="3.0" layoutY="2300.0" prefHeight="29.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%sudimost" />
+                              <Label layoutX="3.0" layoutY="2324.0" prefHeight="60.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%illness" />
+                              <CheckBox fx:id="field140" layoutX="874.0" layoutY="2330.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" style="-fx-wrap-text: true;" text="%yes" />
+                              <CheckBox fx:id="field141" layoutX="942.0" layoutY="2330.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="48.0" style="-fx-wrap-text: true;" text="%no" />
+                              <CheckBox fx:id="field143" layoutX="942.0" layoutY="2367.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="48.0" style="-fx-wrap-text: true;" text="%no" />
+                              <CheckBox fx:id="field142" layoutX="874.0" layoutY="2367.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" style="-fx-wrap-text: true;" text="%yes" />
+                              <Label layoutX="3.0" layoutY="2377.0" prefHeight="29.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%ilnessContry" />
+                              <TextField fx:id="field174" layoutX="302.0" layoutY="586.0" prefHeight="25.0" prefWidth="432.0" />
+                              <CheckBox fx:id="field173" layoutX="177.0" layoutY="590.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="123.0" text="%profession16" />
+                              <TextField fx:id="field169" layoutX="673.0" layoutY="793.0" prefHeight="25.0" prefWidth="327.0" />
+                              
+                              <CheckBox fx:id="field168" layoutX="500.0" layoutY="792.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="140.0" text="%familyStatus3" />
+                              <CheckBox fx:id="field167" layoutX="325.0" layoutY="794.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="170.0" text="%familyStatus2" />
+                              <CheckBox fx:id="field166" layoutX="177.0" layoutY="794.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="140.0" text="%familyStatus1" />
+                              <Label layoutX="3.0" layoutY="795.0" prefHeight="17.0" prefWidth="170.0" text="%familyStatus" />
+                              <Label alignment="TOP_RIGHT" layoutX="884.0" layoutY="1734.0" prefHeight="17.0" prefWidth="104.0" text="%lvday" />
+                              <ComboBox fx:id="field170" layoutX="564.0" layoutY="1702.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field171" layoutX="654.0" layoutY="1702.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field172" layoutX="744.0" layoutY="1702.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <Label layoutX="3.0" layoutY="2407.0" prefHeight="29.0" prefWidth="700.0" style="-fx-wrap-text: true;" text="%ilnessContryMoreDesc" />
+                              <TextArea fx:id="field145" layoutX="144.0" layoutY="2436.0" prefHeight="65.0" prefWidth="846.0" />
+                              <TextArea fx:id="field146" layoutX="144.0" layoutY="2523.0" prefHeight="65.0" prefWidth="846.0" />
+                              <Label layoutX="3.0" layoutY="2494.0" prefHeight="29.0" prefWidth="985.0" style="-fx-wrap-text: true;" text="%ilnessContryOtherDesc" />
+                              <Label layoutX="3.0" layoutY="2591.0" prefHeight="29.0" prefWidth="983.0" style="-fx-wrap-text: true;" text="%ilnessContryPersonData" />
+                              <ComboBox fx:id="field153" layoutX="145.0" layoutY="2710.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field154" layoutX="235.0" layoutY="2710.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field155" layoutX="325.0" layoutY="2710.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <TextField fx:id="field147" layoutX="144.0" layoutY="2645.0" prefHeight="25.0" prefWidth="275.0" />
+                              <TextField fx:id="field150" layoutX="144.0" layoutY="2677.0" prefHeight="25.0" prefWidth="275.0" />
+                              <Label layoutX="145.0" layoutY="2614.0" prefHeight="30.0" prefWidth="257.0" style="-fx-wrap-text: true;" text="%person1" />
+                              <Label layoutX="3.0" layoutY="2645.0" prefHeight="30.0" prefWidth="136.0" style="-fx-wrap-text: true;" text="%part3.8_1" />
+                              <Label layoutX="3.0" layoutY="2674.0" prefHeight="30.0" prefWidth="136.0" style="-fx-wrap-text: true;" text="%part3.8_2" />
+                              <Label layoutX="3.0" layoutY="2707.0" prefHeight="50.0" prefWidth="140.0" style="-fx-wrap-text: true;" text="%part3.8_3" />
+                              <Label layoutX="430.0" layoutY="2613.0" prefHeight="30.0" prefWidth="257.0" style="-fx-wrap-text: true;" text="%person2" />
+                              <TextField fx:id="field151" layoutX="428.0" layoutY="2676.0" prefHeight="25.0" prefWidth="275.0" />
+                              <TextField fx:id="field148" layoutX="428.0" layoutY="2644.0" prefHeight="25.0" prefWidth="275.0" />
+                              <ComboBox fx:id="field158" layoutX="608.0" layoutY="2709.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <ComboBox fx:id="field157" layoutX="518.0" layoutY="2709.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field156" layoutX="428.0" layoutY="2709.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field159" layoutX="713.0" layoutY="2708.0" prefHeight="25.0" prefWidth="80.0" promptText="%day" />
+                              <ComboBox fx:id="field160" layoutX="803.0" layoutY="2708.0" prefHeight="25.0" prefWidth="80.0" promptText="%month" />
+                              <ComboBox fx:id="field161" layoutX="893.0" layoutY="2708.0" prefHeight="25.0" prefWidth="80.0" promptText="%year" />
+                              <TextField fx:id="field149" layoutX="713.0" layoutY="2643.0" prefHeight="25.0" prefWidth="275.0" />
+                              <TextField fx:id="field152" layoutX="713.0" layoutY="2675.0" prefHeight="25.0" prefWidth="275.0" />
+                              <Label layoutX="717.0" layoutY="2612.0" prefHeight="30.0" prefWidth="257.0" style="-fx-wrap-text: true;" text="%person3" />
+                              <Label layoutX="3.0" layoutY="2753.0" prefHeight="26.0" prefWidth="640.0" styleClass="welcome-text" text="%part5a" />
+                              <Label layoutX="7.0" layoutY="2809.0" prefHeight="30.0" prefWidth="136.0" style="-fx-wrap-text: true;" text="%part5.3" />
+                              <Label layoutX="7.0" layoutY="2780.0" prefHeight="30.0" prefWidth="136.0" style="-fx-wrap-text: true;" text="%part5.1" />
+                              <TextField fx:id="field164" layoutX="144.0" layoutY="2812.0" prefHeight="25.0" prefWidth="320.0" />
+                              <TextField fx:id="field162" layoutX="144.0" layoutY="2780.0" prefHeight="25.0" prefWidth="320.0" />
+                              <Label layoutX="524.0" layoutY="2776.0" prefHeight="30.0" prefWidth="157.0" style="-fx-wrap-text: true;" text="%part5.2" />
+                              <Label layoutX="524.0" layoutY="2809.0" prefHeight="30.0" prefWidth="158.0" style="-fx-wrap-text: true;" text="%part5.4" />
+                              <TextField fx:id="field163" layoutX="676.0" layoutY="2780.0" prefHeight="25.0" prefWidth="320.0" />
+                              <TextField fx:id="field165" layoutX="675.0" layoutY="2812.0" prefHeight="25.0" prefWidth="320.0" />
+                              
+                              
+                        </children>
+                     </Pane>
+                     </bottom>
+               </BorderPane>
+                 
+             </children>
+      <stylesheets>
+      <URL value="@../style/businessForm.css" />
+   </stylesheets>
+             </VBox>
+      </content>
+     </ScrollPane>
+   </children>
+</AnchorPane>
